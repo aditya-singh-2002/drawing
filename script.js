@@ -37,9 +37,32 @@ function stopDrawing() {
     isDrawing = false;
 }
 
-// event listeners which detect actions such as change in color and drawing 
+// downloading our drawing on the canvas as a png
+function downloadCanvasAsPNG() {
+    const dataURL = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'drawing.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Clear the entire canvas by drawing a white rectangle over it
+function clearCanvas() {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+// event listeners which detect actions such as change in color and drawing actions
 document.getElementById('customColor').addEventListener('change', updateColor);
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', drawLine);
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
+
+// download button event
+document.getElementById('downloadButton').addEventListener('click', downloadCanvasAsPNG);
+
+// clear button event
+document.getElementById('clearButton').addEventListener('click', clearCanvas);
