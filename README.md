@@ -4,4 +4,5 @@ This **simplified drawing application** allows users to draw on a canvas using w
 The user can download their canvas as a PNG image and clear the canvas whenever they want
 
 **Screenshot**
+
 ![drawing](/drawing.PNG)
